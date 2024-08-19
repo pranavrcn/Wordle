@@ -44,26 +44,26 @@ public class GuessResult {
         boolean[] matched = new boolean[WordValidator.WORDLE_WORD_LENGTH];
 
 
-        for (int i = 0; i < guess.length(); i++) { // For each letter in the five wordle guess letters
-            if (Character.toUpperCase(guess.charAt(i)) == Character.toUpperCase(answer.charAt(i))) { // If the guess character is equivalent and in the same position as answer character
-                results[i] = GREEN; // Set that letters result to green
-                matched[i] = true; // Set the matched state of that letter to true
+        for (int i = 0; i < guess.length(); i++) {
+            if (Character.toUpperCase(guess.charAt(i)) == Character.toUpperCase(answer.charAt(i))) { 
+                results[i] = GREEN; 
+                matched[i] = true; 
             }
         }
 
-        for (int i = 0; i < guess.length(); i++) { // For each letter in the five wordle guess letters
-            if (results[i] != GREEN) { // If the result isn't already set as green
-                boolean found = false; // Initialize a found variable setting it to false
-                for (int j = 0; j < answer.length(); j++) { // Iterate through the answer
-                    if (Character.toUpperCase(guess.charAt(i)) == Character.toUpperCase(answer.charAt(j)) && !matched[j]) { // If the guess letter is equivalent to any letter in the answer that isn't already matched/found
-                        results[i] = YELLOW; // Set that letters result to yellow
-                        matched[j] = true; // Set that it has been partially matched
-                        found = true; // Set that it has been found
+        for (int i = 0; i < guess.length(); i++) { 
+            if (results[i] != GREEN) { 
+                boolean found = false; 
+                for (int j = 0; j < answer.length(); j++) { 
+                    if (Character.toUpperCase(guess.charAt(i)) == Character.toUpperCase(answer.charAt(j)) && !matched[j]) { 
+                        results[i] = YELLOW; 
+                        matched[j] = true; 
+                        found = true; 
                         break;
                     }
                 }
-                if (!found) { // If any character isn't found in the answer
-                    results[i] = GRAY; // Set that letters result to gray
+                if (!found) { 
+                    results[i] = GRAY; 
                 }
             }
         }
