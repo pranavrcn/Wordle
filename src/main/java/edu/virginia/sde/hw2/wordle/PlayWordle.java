@@ -2,9 +2,6 @@ package edu.virginia.sde.hw2.wordle;
 
 import java.util.Scanner;
 
-/**
- * A command-line application for playing Wordle.
- */
 
 public class PlayWordle {
     private static final Scanner scanner = new Scanner(System.in);
