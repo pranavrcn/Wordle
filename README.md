@@ -11,6 +11,3 @@ Wordle Clone Development and Testing
 - **Test-Driven Development (TDD)**: Used TDD principles to build robust, maintainable code with thorough test coverage.
 - **Git & GitHub**: Managed version control, branching, and collaborative development using industry-standard practices.
 
----
-
-This project demonstrates my ability to develop a application, implement complex logic, and ensure software quality through systematic testing.
