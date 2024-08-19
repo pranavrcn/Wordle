@@ -4,48 +4,17 @@ import java.util.Random;
 
 import static edu.virginia.sde.hw2.wordle.GameStatus.*;
 
-/**
- * This class represents a game of Wordle.
- */
-
 public class Game {
 
-    /**
-     * The default number of guesses the player starts with
-     */
+
     public static final int STARTING_GUESSES = 6;
-    /**
-     * A dictionary containing the list of words the player is allowed to guess
-     */
     private final Dictionary guessDictionary;
-
-    /**
-     * The word the player is trying to guess
-     */
     private final String answer;
-
-    /**
-     * The number of guesses the player has remaining
-     */
     private int guessesRemaining;
-
-    /**
-     * The current status of the game.
-     */
     private GameStatus gameStatus;
-
-
-    /**
-     * Random number generator for selecting random answers.
-     */
     private static final Random random = new Random();
 
-    /**
-     * Creates a "default" wordle game, using the default guess dictionary
-     * (see {@link DefaultDictionaries#getGuessesDictionary()}), selecting a random word from the default answer dictionary
-     * (see {@link DefaultDictionaries#getAnswersDictionary()}) as the answer the player is trying to guess, giving
-     * 6 guesses for the user to start with, and setting the game status to {@link GameStatus#PLAYING}.
-     */
+
     public Game() {
         this(DefaultDictionaries.getGuessesDictionary(),
                 DefaultDictionaries.getAnswersDictionary().getRandomWord(random),
@@ -53,13 +22,7 @@ public class Game {
                 PLAYING);
     }
 
-    /**
-     * Constructor for Wordle Game
-     * @param guessDictionary the dictionary of allowed guesses
-     * @param answer the answer the player is trying to guess
-     * @param guessesRemaining the number of guesses remaining the player has at the time the game is created
-     * @param gameStatus the initial game status
-     */
+
     protected Game(Dictionary guessDictionary, String answer, int guessesRemaining, GameStatus gameStatus) {
         validate(guessDictionary, answer, guessesRemaining, gameStatus);
 
@@ -69,55 +32,30 @@ public class Game {
         this.gameStatus = gameStatus;
     }
 
-    /**
-     * Get the dictionary containing the valid guesses for this game
-     */
     public Dictionary getGuessDictionary() {
         return guessDictionary;
     }
 
-    /**
-     * Get the game's answer
-     */
+
     public String getAnswer() {
         return answer;
     }
 
-    /**
-     * Get the number of guesses remaining
-     */
+ 
     public int getGuessesRemaining() {
         return guessesRemaining;
     }
 
-    /**
-     * Get the current game status;
-     * <ul>
-     * <li>{@link GameStatus#PLAYING} - the game is ongoing</li>
-     * <li>{@link GameStatus#WIN} - the game is over, and the player won</li>
-     * <li>{@link GameStatus#LOSS} - the game is over, and the player lost</li>
-     * </ul>
-     */
+
     public GameStatus getGameStatus() {
         return gameStatus;
     }
 
-    /**
-     * Returns true if the game is over (either {@link GameStatus#WIN} or {@link GameStatus#LOSS})
-     */
     public boolean isGameOver() {
         return gameStatus != PLAYING;
     }
 
-    /**
-     * Handles a player's guess in Wordle. This includes getting the result of the guess, as well as decrementing the
-     * game's guesses remaining, and handling win and loss conditions.
-     *
-     * @param guess A player guessed word
-     * @throws GameAlreadyOverException if the game is already over (see {@link Game#isGameOver()}
-     * @throws IllegalWordException if the word is not in the games Guess Dictionary - That is,
-     *                                  it's not a real 5-letter word.
-     */
+
     public GuessResult submitGuess(String guess) {
         if (isGameOver()) {
             throw new GameAlreadyOverException("Game is already over");
